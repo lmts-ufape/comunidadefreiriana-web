@@ -32,7 +32,7 @@ class CreateInstituicaosTable extends Migration
             $table->double('latitude', 10, 8)->nullable();
             $table->double('longitude', 11, 8)->nullable();
             $table->string('info');
-            $table->boolean('autorizado')->default(false);
+            $table->boolean('autorizado')->nullable();
             $table->boolean('confirmacaoEmail')->default(false);
             $table->softDeletes();
             $table->timestamps();

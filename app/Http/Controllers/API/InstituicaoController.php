@@ -34,14 +34,17 @@ class InstituicaoController extends Controller
     {
         try {
             $instituicao = Instituicao::create($request->all());
-
-            $path = $request->file('image')->store(
-                'images/'.$instituicao->id, 'public'
-            );
-            $instituicao->images()->create([
-                'path' => 'storage/'.$path,
-                'nome' => $instituicao->nome,
-            ]);
+            $path = "";
+            if ($request->hasFile('image')) {
+                # code...
+                $path = $request->file('image')->store(
+                    'images/'.$instituicao->id, 'public'
+                );
+                $instituicao->images()->create([
+                    'path' => 'storage/'.$path,
+                    'nome' => $instituicao->nome,
+                ]);
+            }
 
 
 

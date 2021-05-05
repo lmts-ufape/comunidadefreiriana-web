@@ -40,7 +40,6 @@ class StoreInstituicao extends FormRequest
             'NomedaRealizacao' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
-            'autorizado' => 'required',
             'confirmacaoEmail' => 'required',
         ];
     }
