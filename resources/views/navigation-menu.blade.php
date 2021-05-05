@@ -5,8 +5,12 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                    <a href="{{ route('dashboard') }}" style="text-decoration: none">
+                        <!--<x-jet-application-mark class="block h-9 w-auto" />-->
+                        <div class="form-group" style="text-align: center; margin-top:20px">
+                            <div style="font-family:Arial, Helvetica, sans-serif; font-weight:bold; color:black; margin-bottom:-9px; font-size:22px">MAPEAMENTO</div>
+                            <div style="color: red; font-weight:normal; font-size:19px">Paulo Freire</div>
+                        </div>
                     </a>
                 </div>
 
