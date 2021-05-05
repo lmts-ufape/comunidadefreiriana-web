@@ -5,11 +5,21 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
+    <div class="container" style="margin-top:2rem">
+        <div class="row justify-center">
+            <div class="col-md-5 shadow" style="background-color: #fff; margin:15px; border-radius:12px">
+                <div class="row" style="text-align: center;">
+                    <div class="col-md-12" style="font-size: 50px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-top:15px">1000</div>
+                    <div class="col-md-12" style="font-family: Arial, Helvetica, sans-serif; font-size:20px; margin-bottom:20px">Pendentes</div>
+                </div>
+            </div>
+            <div class="col-md-5 shadow" style="background-color: #fff; margin:15px; border-radius:12px">
+                <div class="row" style="text-align: center;">
+                    <div class="col-md-12" style="font-size: 50px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-top:15px">1000</div>
+                    <div class="col-md-12" style="font-family: Arial, Helvetica, sans-serif; font-size:20px; margin-bottom:20px">Aprovados</div>
+                </div>
             </div>
         </div>
     </div>
 </x-app-layout>
+
