@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInstituicao;
 use App\Http\Requests\StoreRequest;
 use App\Models\Instituicao;
+use App\Notifications\InstituicaoAprovada;
 use Illuminate\Support\Facades\Validator;
+
 
 class InstituicaoController extends Controller
 {
@@ -40,6 +42,8 @@ class InstituicaoController extends Controller
                 'path' => 'storage/'.$path,
                 'nome' => $instituicao->nome,
             ]);
+
+
 
             return response()->json(['data' => ['message'=>'Criado com sucesso', 'instituicao' => $instituicao, 'path'=> 'storage/'.$path] ]);
 
