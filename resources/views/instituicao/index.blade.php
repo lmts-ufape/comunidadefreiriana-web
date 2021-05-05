@@ -6,10 +6,20 @@
     </x-slot>
 
     <div class="container" style="margin-top:3rem; padding-bottom:9rem;">
+        @if (session('message'))
+            <div class="bg-green-100 rounded-md border-2 border-green-500 text-green-700 px-4 py-3 mb-4" role="alert">
+                <p class="font-bold">{{ session('message') }}</p>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="bg-red-100 rounded-md border-2 border-red-500 text-red-700 px-4 py-3 mb-4" role="alert">
+                <p class="font-bold">{{ session('error') }}</p>
+            </div>
+        @endif
         <div class="row justify-center">
             <div class="col-md-12" style="text-align: right; margin-bottom:1rem">
-                <button type="button" class="btn btn-warning">Pendente</button>
-                <button type="button" class="btn btn-primary">Aprovado</button>
+                <a href="{{ route('instituicao.pendentes') }}" class="btn btn-warning">Pendente</a>
+                <a href="{{ route('instituicao.aprovados') }}" class="btn btn-primary">Aprovado</a>
             </div>
             @forelse ($instituicaos as $instituicao)
                 <div class="col-md-12 shadow" style="background-color: #fff; border-radius:12px; margin-bottom:15px; margin-left:15px; margin-right:15px">
@@ -91,17 +101,22 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="text-align: right; margin-bottom:15px">
-                                    @if($instituicao->autorizado)
-                                        <div class="bg-green-500 text-center font-bold py-2 px-6 rounded-full">
-                                            Autorizado
-                                        </div>
-                                    @else
+                                    @if( is_null($instituicao->autorizado))
                                         <a href="{{ route('instituicao.aceitar', ['id' => $instituicao->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-8 mb-4">
                                             Aprovar
                                         </a>
-                                        <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full mr-8">
+                                        <a href="{{ route('instituicao.reprovar', ['id' => $instituicao->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full mr-8">
                                             Reprovar
                                         </a>
+
+                                    @elseif($instituicao->autorizado == true)
+                                        <div class="bg-green-500 text-center font-bold py-2 px-6 rounded-full">
+                                            Autorizado
+                                        </div>
+                                    @elseif($instituicao->autorizado == false)
+                                        <div class="bg-red-500 text-center font-bold py-2 px-6 rounded-full">
+                                            Reprovado
+                                        </div>
                                     @endif
                                 </div>
                             </div>

@@ -26,4 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->prefix('instituicao')->group(function () {
     Route::get('index', [InstituicaoController::class, 'index'])->name('instituicao.index');
     Route::get('aceitar/{id}', [InstituicaoController::class, 'aceitar'])->name('instituicao.aceitar');
+    Route::get('reprovar/{id}', [InstituicaoController::class, 'reprovar'])->name('instituicao.reprovar');
+    Route::get('aprovados', [InstituicaoController::class, 'aprovados'])->name('instituicao.aprovados');
+    Route::get('pendentes', [InstituicaoController::class, 'pendentes'])->name('instituicao.pendentes');
 });
