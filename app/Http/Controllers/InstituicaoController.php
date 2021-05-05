@@ -21,7 +21,7 @@ class InstituicaoController extends Controller
         $instituicao = Instituicao::find($id);
         $instituicao->autorizado = true;
         $instituicao->update();
-        Notification::send($instituicao, new InstituicaoAprovada($instituicao->email , $instituicao->nome));
+        // Notification::send($instituicao, new InstituicaoAprovada($instituicao->email , $instituicao->nome));
         return back()->with(['message' => "Autorizado com sucesso."]);
     }
 }
