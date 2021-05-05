@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\InstituicaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('instituicao/')->group(function () {
+    Route::post('store', [InstituicaoController::class, 'store']);
+    Route::get('index', [InstituicaoController::class, 'index']);
+    Route::get('show/{id}', [InstituicaoController::class, 'show']);
 });
