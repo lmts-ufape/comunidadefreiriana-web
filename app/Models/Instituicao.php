@@ -6,10 +6,11 @@ use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
 class Instituicao extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Notifiable;
 
     protected $fillable = ['nome', 'categoria', 'pais', 'estado', 'cidade', 'endereco', 'cep', 'telefone', 'email', 'site', 'coordenador', 'DatadeRealizacao', 'NomedaRealizacao', 'latitude', 'longitude', 'info', 'autorizado', 'confirmacaoEmail', 'datafundacao'];
 
