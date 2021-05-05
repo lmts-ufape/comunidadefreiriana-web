@@ -37,11 +37,11 @@ class InstituicaoController extends Controller
                 'images/'.$instituicao->id, 'public'
             );
             $instituicao->images()->create([
-                'path' => $path,
+                'path' => 'storage/'.$path,
                 'nome' => $instituicao->nome,
             ]);
 
-            return response()->json(['data' => ['Criado com sucesso', $instituicao, $path] ]);
+            return response()->json(['data' => ['message'=>'Criado com sucesso', 'instituicao' => $instituicao, 'path'=> 'storage/'.$path] ]);
 
         } catch (\Throwable $th) {
             return response()->json(['data' => $th->getMessage() ]);
@@ -58,8 +58,8 @@ class InstituicaoController extends Controller
      */
     public function show($id)
     {
-        $instituicao = Instituicao::find($id);
-        return response()->json(['data' => $instituicao ]);
+        $instituicao = Instituicao::with('images')->find($id);
+        return response()->json(['data' => $instituicao]);
     }
 
     /**

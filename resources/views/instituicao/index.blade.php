@@ -20,7 +20,7 @@
                                 <div class="max-w-full mx-auto rounded overflow-hidden shadow-lg my-2">
                                     <div class="grid grid-cols-4 gap-2 justify-items-center">
                                         <div>
-                                            <img class="object-contain w-full h-full" src="{{ asset('storage/').'/' .$instituicao->images->first()->path }}" alt="Sunset in the mountains">
+                                            <img class="object-contain w-full h-full" src="{{ asset($instituicao->images->first()->path) }}" alt="Sunset in the mountains">
                                         </div>
                                         <div class="col-span-3 pt-5">
                                             <div class="px-6 py-2">
