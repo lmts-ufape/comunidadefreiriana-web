@@ -9,13 +9,13 @@
         <div class="row justify-center">
             <div class="col-md-5 shadow" style="background-color: #fff; margin:15px; border-radius:12px">
                 <div class="row" style="text-align: center;">
-                    <div class="col-md-12" style="font-size: 50px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-top:15px">1000</div>
+                    <div class="col-md-12" style="font-size: 50px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-top:15px">{{ $pendentes }}</div>
                     <div class="col-md-12" style="font-family: Arial, Helvetica, sans-serif; font-size:20px; margin-bottom:20px">Pendentes</div>
                 </div>
             </div>
             <div class="col-md-5 shadow" style="background-color: #fff; margin:15px; border-radius:12px">
                 <div class="row" style="text-align: center;">
-                    <div class="col-md-12" style="font-size: 50px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-top:15px">1000</div>
+                    <div class="col-md-12" style="font-size: 50px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-top:15px">{{ $aprovados }}</div>
                     <div class="col-md-12" style="font-family: Arial, Helvetica, sans-serif; font-size:20px; margin-bottom:20px">Aprovados</div>
                 </div>
             </div>

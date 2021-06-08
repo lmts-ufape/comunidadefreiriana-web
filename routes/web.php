@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\InstituicaoController;
+use App\Models\Instituicao;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InstituicaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,9 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $pendentes =  Instituicao::where('autorizado', null)->count();
+    $aprovados = Instituicao::where('autorizado', true)->count();
+    return view('dashboard', compact('pendentes', 'aprovados'));
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->prefix('instituicao')->group(function () {
