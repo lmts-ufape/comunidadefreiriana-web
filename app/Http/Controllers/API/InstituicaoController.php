@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Instituicao;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInstituicao;
-use App\Http\Requests\StoreRequest;
-use App\Models\Instituicao;
-use App\Notifications\InstituicaoAprovada;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\InstituicaoAprovada;
+use App\Http\Resources\InstituicaoResource;
 
 
 class InstituicaoController extends Controller
@@ -36,7 +37,6 @@ class InstituicaoController extends Controller
             $instituicao = Instituicao::create($request->all());
             $path = "";
             if ($request->hasFile('image')) {
-                # code...
                 $path = $request->file('image')->store(
                     'images/'.$instituicao->id, 'public'
                 );
@@ -48,7 +48,7 @@ class InstituicaoController extends Controller
 
 
 
-            return response()->json(['data' => ['message'=>'Criado com sucesso', 'instituicao' => $instituicao, 'path'=> 'storage/'.$path] ]);
+            return response()->json( new InstituicaoResource($instituicao));
 
         } catch (\Throwable $th) {
             return response()->json(['data' => $th->getMessage() ]);
