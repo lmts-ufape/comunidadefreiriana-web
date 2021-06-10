@@ -12,7 +12,7 @@ class Instituicao extends Model
 {
     use HasFactory, SoftDeletes, Notifiable;
 
-    protected $fillable = ['nome', 'categoria', 'pais', 'estado', 'cidade', 'endereco', 'cep', 'telefone', 'email', 'site', 'coordenador', 'latitude', 'longitude', 'info', 'autorizado', 'confirmacaoEmail', 'datafundacao'];
+    protected $fillable = ['nome', 'categoria', 'pais', 'estado', 'cidade', 'endereco', 'cep', 'telefone', 'email', 'site', 'coordenador', 'latitude', 'longitude', 'info', 'datafundacao'];
 
     public function images()
     {
