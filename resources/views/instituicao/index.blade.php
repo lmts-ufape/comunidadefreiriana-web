@@ -105,18 +105,23 @@
                                         <a href="{{ route('instituicao.aceitar', ['id' => $instituicao->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-8 mb-4">
                                             Aprovar
                                         </a>
-                                        <a href="{{ route('instituicao.reprovar', ['id' => $instituicao->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full mr-8">
+                                        <a href="{{ route('instituicao.reprovar', ['id' => $instituicao->id]) }}"  onclick="confirm('Tem certeza?')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full mr-8">
                                             Reprovar
                                         </a>
 
                                     @elseif($instituicao->autorizado == true)
-                                        <div class="bg-green-500 text-center font-bold py-2 px-6 rounded-full">
-                                            Autorizado
+                                        <div class="bg-green-500 text-center font-bold py-2 px-6 rounded-full ">
+                                            <a href="{{ route('instituicao.reprovar', ['id' => $instituicao->id]) }}" onclick="confirm('Tem certeza?')" class="text-white">
+                                                Autorizado
+                                            </a>
                                         </div>
+
                                     @elseif($instituicao->autorizado == false)
-                                        <div class="bg-red-500 text-center font-bold py-2 px-6 rounded-full">
+                                    <div class="bg-red-500 text-center font-bold py-2 px-6 rounded-full ">
+                                        <a href="{{ route('instituicao.aceitar', ['id' => $instituicao->id]) }}" onclick="confirm('Tem certeza?')" class="text-white">
                                             Reprovado
-                                        </div>
+                                        </a>
+                                    </div>
                                     @endif
                                 </div>
                             </div>
