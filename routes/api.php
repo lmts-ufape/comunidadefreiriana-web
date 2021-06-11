@@ -22,5 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('instituicao/')->group(function () {
     Route::post('store', [InstituicaoController::class, 'store']);
     Route::get('index', [InstituicaoController::class, 'index']);
+    Route::get('aprovados', [InstituicaoController::class, 'aprovados']);
     Route::get('show/{id}', [InstituicaoController::class, 'show']);
 });
