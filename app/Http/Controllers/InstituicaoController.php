@@ -16,6 +16,7 @@ class InstituicaoController extends Controller
         return view('instituicao.index', compact('instituicaos'));
     }
 
+
     public function aceitar($id)
     {
         $instituicao = Instituicao::find($id);

@@ -25,6 +25,12 @@ class InstituicaoController extends Controller
         return response()->json(['data' => $instituicaos ]);
     }
 
+    public function aprovados()
+    {
+        $instituicaos =  Instituicao::where('autorizado', true)->get();
+        return response()->json(['data' => $instituicaos ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
