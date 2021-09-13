@@ -33,7 +33,14 @@
                         </div>
                         <div class="col" style="margin: 10px; margin-top:15px">
                             <div class="row">
-                                <div class="col-md-12" style="font-size: 25px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-bottom:15px">{{  $instituicao->nome }}</div>
+                                <div class="col-md-11" style="font-size: 25px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-bottom:15px">
+                                    {{  $instituicao->nome }}
+                                </div>
+                                <div id="div-edit-instituicao" class="col-md-1">
+                                    <a href="{{route('instituicao.edit', ['id' => $instituicao->id])}}">
+                                        <img src="{{asset('images/edit-regular.svg')}}" alt="Editar Instituição" width="25px" height="auto" style="float: right; margin-top: 5px;" onmouseover="this.src='{{asset('images/edit-regular-cinza.svg')}}'" onmouseout="this.src='{{asset('images/edit-regular.svg')}}'">
+                                    </a>
+                                </div>
                                 <div class="col-md-12"></div>
                                 <div class="col-md-12">
                                     <div class="row">

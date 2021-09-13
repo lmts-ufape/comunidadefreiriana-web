@@ -47,4 +47,54 @@ class InstituicaoController extends Controller
         $instituicaos = Instituicao::where('autorizado', true)->get();
         return view('instituicao.index', compact('instituicaos'));
     }
+
+    public function edit($id) 
+    {
+        $instituicao = Instituicao::find($id);
+        return view('instituicao.edit', compact('instituicao'));
+    }
+
+    public function update(Request $request, $id) 
+    {
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'categoria' => 'required|string|max:255',
+            'pais' => 'required|string|max:255',
+            'estado' => 'required|string|max:255',
+            'cidade' => 'required|string|max:255',
+            'endereço' => 'required|string|max:255',
+            'cep' => 'required|string|max:255',
+            'telefone' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'site' => 'required|string|max:255',
+            'coordenador' => 'required|string|max:255',
+            'data_de_fundação' => 'required|date|max:255',
+            'latitude' => 'required|max:255',
+            'longitude' => 'required|max:255',
+        ]);
+
+        if (!$this->is_number($request->latitude)) {
+            return redirect()->back()->withErrors(['latitude' => 'A latitude deve ser um número.'])->withInput($request->all());
+        }
+        if (!$this->is_number($request->longitude)) {
+            return redirect()->back()->withErrors(['longitude' => 'A longitude deve ser um número.'])->withInput($request->all());
+        }
+        
+        $instituicao = Instituicao::find($id);
+        $instituicao->setAtributes($request);
+        $instituicao->update();
+
+        return redirect(route('instituicao.edit', ['id' => $instituicao->id]))->with(['success' => 'Instituição atualizada com sucesso!']);
+    }
+
+    private function is_number($var)
+    {
+        if ($var == (string) (float) $var) {
+            return (bool) is_numeric($var);
+        }
+        if ($var >= 0 && is_string($var) && !is_float($var)) {
+            return (bool) ctype_digit($var);
+        }
+        return (bool) is_numeric($var);
+    }
 }
