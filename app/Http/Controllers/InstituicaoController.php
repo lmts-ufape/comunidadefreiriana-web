@@ -6,6 +6,7 @@ use App\Models\Instituicao;
 use Illuminate\Http\Request;
 use App\Notifications\InstituicaoAprovada;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 
 class InstituicaoController extends Controller
 {
@@ -48,6 +49,12 @@ class InstituicaoController extends Controller
         return view('instituicao.index', compact('instituicaos'));
     }
 
+    public function reprovados()
+    {
+        $instituicaos = Instituicao::where('autorizado', false)->get();
+        return view('instituicao.index', compact('instituicaos'));
+    }
+
     public function edit($id) 
     {
         $instituicao = Instituicao::find($id);
@@ -71,6 +78,8 @@ class InstituicaoController extends Controller
             'data_de_fundação' => 'required|date|max:255',
             'latitude' => 'required|max:255',
             'longitude' => 'required|max:255',
+            'image'     => 'nullable|file',
+            'informação' => 'nullable|max:255',
         ]);
 
         if (!$this->is_number($request->latitude)) {
@@ -82,6 +91,7 @@ class InstituicaoController extends Controller
         
         $instituicao = Instituicao::find($id);
         $instituicao->setAtributes($request);
+        $this->salvarImagem($request, $instituicao);
         $instituicao->update();
 
         return redirect(route('instituicao.edit', ['id' => $instituicao->id]))->with(['success' => 'Instituição atualizada com sucesso!']);
@@ -96,5 +106,32 @@ class InstituicaoController extends Controller
             return (bool) ctype_digit($var);
         }
         return (bool) is_numeric($var);
+    }
+
+    private function salvarImagem(Request $request, Instituicao $instituicao)
+    {
+        $path = "";
+        if ($request->hasFile('image')) {
+            $imagem = $instituicao->images()->where('nome', 'logo')->first();
+            if ($imagem != null) {
+                if(Storage::disk()->exists('public/' . $imagem->path)) {
+                    Storage::delete('public/' . $imagem->path);
+                }
+            }
+            
+            $path = $request->file('image')->store(
+                'images/'.$instituicao->id, 'public'
+            );
+
+            if ($imagem != null) {
+                $imagem->path = $path;
+                $imagem->update();
+            } else {
+                $instituicao->images()->create([
+                    'path' => $path,
+                    'nome' => 'logo',
+                ]);
+            }
+        }
     }
 }

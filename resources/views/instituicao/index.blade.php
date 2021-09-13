@@ -18,15 +18,16 @@
         @endif
         <div class="row justify-center">
             <div class="col-md-12" style="text-align: right; margin-bottom:1rem">
-                <a href="{{ route('instituicao.pendentes') }}" class="btn btn-warning">Pendente</a>
-                <a href="{{ route('instituicao.aprovados') }}" class="btn btn-primary">Aprovado</a>
+                <a href="{{ route('instituicao.aprovados') }}" class="btn btn-primary">Listar aprovados</a>
+                <a href="{{ route('instituicao.pendentes') }}" class="btn btn-warning">Listar pendentes</a>
+                <a href="{{ route('instituicao.reprovados') }}" class="btn btn-danger">Listar reprovados</a>
             </div>
             @forelse ($instituicaos as $instituicao)
                 <div class="col-md-12 shadow" style="background-color: #fff; border-radius:12px; margin-bottom:15px; margin-left:15px; margin-right:15px">
                     <div class="row">
                         <div class="col-md-5" style="margin: 10px; margin-top:20px; margin-bottom:20px">
                             @if( $instituicao->images->count() != 0 )
-                                <img class="object-contain w-full h-full" src="{{ asset($instituicao->images->first()->path) }}" alt="Sunset in the mountains">
+                                <img class="object-contain w-full h-full" src="{{ asset('storage/'.$instituicao->images->first()->path) }}" alt="Sunset in the mountains">
                             @else
                                 <img class="object-contain w-full h-full" src="{{ asset('images/modelo.png') }}" alt="Sem imagem">
                             @endif
@@ -94,11 +95,11 @@
                                         </div>
                                         <div class="col-md-6" style="margin-top:-5px; margin-bottom:-5px">
                                             <div class="form-group">
-                                                <div style="font-weight: bold; font-size:15px; margin-bottom:-5px">Nome da realização:</div>
-                                                <div style="font-size:17px">{{ $instituicao->NomedaRealizacao }}</div>
+                                                <div style="font-weight: bold; font-size:15px; margin-bottom:-5px">E-mail/Site:</div>
+                                                <div style="font-size:17px">{{ $instituicao->email }}/ <a href="{{$instituicao->site}}">{{ $instituicao->site }}</a> </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6" style="margin-top:-5px; margin-bottom:-5px">
+                                        <div class="col-md-12" style="margin-top:-5px; margin-bottom:-5px">
                                             <div class="form-group">
                                                 <div style="font-weight: bold; font-size:15px; margin-bottom:-5px">Informação:</div>
                                                 <div style="font-size:17px">{{ $instituicao->info }}</div>

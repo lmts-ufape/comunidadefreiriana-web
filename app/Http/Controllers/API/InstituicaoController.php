@@ -47,7 +47,7 @@ class InstituicaoController extends Controller
                     'images/'.$instituicao->id, 'public'
                 );
                 $instituicao->images()->create([
-                    'path' => 'storage/'.$path,
+                    'path' => $path,
                     'nome' => $instituicao->nome,
                 ]);
             }

@@ -23,9 +23,25 @@
                                 </div>
                             </div>
                         @endif
-                        <form id="edit-instituicao-form" method="POST" action="{{route('instituicao.update', ['id' => $instituicao->id])}}">
+                        <form id="edit-instituicao-form" method="POST" action="{{route('instituicao.update', ['id' => $instituicao->id])}}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
+                            <div class="form-row">
+                                <div class="col-md-12 form-group">
+                                    <label for="image">Imagem</label>
+                                    <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror">
+
+                                    @error('image')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    
+                                    @if($instituicao->images()->where('nome', 'logo')->first() != null)
+                                        <small>Para substituir a imagem envie a nova.</small>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
                                     <label for="nome">Nome</label>
@@ -174,6 +190,18 @@
                                     <input type="text" id="latitude" name="latitude" class="form-control @error('latitude') is-invalid @enderror" required value="{{old('latitude', $instituicao->latitude)}}">
 
                                     @error('latitude')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 form-group">
+                                    <label for="info">Informação</label>
+                                    <input type="text" id="info" name="informação" class="form-control @error('informação') is-invalid @enderror" value="{{old('informação', $instituicao->info)}}">
+                                
+                                    @error('informação')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                             {{ $message }}
                                         </div>
