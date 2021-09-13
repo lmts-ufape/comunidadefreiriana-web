@@ -35,5 +35,6 @@ class Instituicao extends Model
         $this->datafundacao = $request->input('data_de_fundação');
         $this->latitude = $request->latitude;
         $this->longitude = $request->longitude;
+        $this->info = $request->input('informação');
     }
 }

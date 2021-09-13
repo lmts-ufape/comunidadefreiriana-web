@@ -32,6 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('instituicao')->group(fu
     Route::get('reprovar/{id}', [InstituicaoController::class, 'reprovar'])->name('instituicao.reprovar');
     Route::get('aprovados', [InstituicaoController::class, 'aprovados'])->name('instituicao.aprovados');
     Route::get('pendentes', [InstituicaoController::class, 'pendentes'])->name('instituicao.pendentes');
+    Route::get('reprovados', [InstituicaoController::class, 'reprovados'])->name('instituicao.reprovados');
     Route::get('editar/{id}', [InstituicaoController::class, 'edit'])->name('instituicao.edit');
     Route::put('atualizar/{id}', [InstituicaoController::class, 'update'])->name('instituicao.update');
 });
