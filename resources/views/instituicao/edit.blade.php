@@ -176,20 +176,20 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
-                                    <label for="longitude">Longitude</label>
-                                    <input type="text" id="longitude" name="longitude" class="form-control @error('longitude') is-invalid @enderror" required value="{{old('longitude', $instituicao->longitude)}}">
-                                
-                                    @error('longitude')
+                                    <label for="latitude">Latitude</label>
+                                    <input type="text" id="latitude" name="latitude" class="form-control @error('latitude') is-invalid @enderror" required value="{{old('latitude', $instituicao->latitude)}}">
+
+                                    @error('latitude')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="latitude">Latitude</label>
-                                    <input type="text" id="latitude" name="latitude" class="form-control @error('latitude') is-invalid @enderror" required value="{{old('latitude', $instituicao->latitude)}}">
-
-                                    @error('latitude')
+                                    <label for="longitude">Longitude</label>
+                                    <input type="text" id="longitude" name="longitude" class="form-control @error('longitude') is-invalid @enderror" required value="{{old('longitude', $instituicao->longitude)}}">
+                                
+                                    @error('longitude')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                             {{ $message }}
                                         </div>
