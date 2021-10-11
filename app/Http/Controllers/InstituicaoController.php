@@ -17,7 +17,8 @@ class InstituicaoController extends Controller
         return view('instituicao.index', compact('instituicaos'));
     }
 
-    public function cadastrar(){
+    public function cadastrar()
+    {
         return view('instituicao.cadastro');
     }
 
@@ -46,6 +47,7 @@ class InstituicaoController extends Controller
         $instituicaos = Instituicao::where('autorizado', null)->get();
         return view('instituicao.index', compact('instituicaos'));
     }
+
     public function aprovados()
     {
 
@@ -82,10 +84,9 @@ class InstituicaoController extends Controller
             'datafundacao' => 'required|date|max:255',
             'latitude' => 'required|max:255',
             'longitude' => 'required|max:255',
-            'image'     => 'nullable|file',
+            'image' => 'nullable|file',
             'informacao' => 'nullable|max:255',
         ]);
-
 
 
         if (!$this->is_number($request->latitude)) {
@@ -101,8 +102,20 @@ class InstituicaoController extends Controller
         $this->salvarImagem($request, $instituicao);
 
 
-
         return redirect(route('instituicao.cadastro', ['id' => $instituicao->id]))->with(['success' => 'Instituição cadastrada com sucesso!']);
+    }
+
+    public function delete(Request $request)
+    {
+        $instituicao = Instituicao::find($request->id);
+        $imagem = $instituicao->images()->where('nome', 'logo')->first();
+        if ($imagem != null) {
+            if (Storage::disk()->exists('public/' . $imagem->path)) {
+                Storage::delete('public/' . $imagem->path);
+            }
+        }
+        $instituicao->delete();
+        return redirect()->back()->with(['message' => 'Instituição Removida com Sucesso!']);
     }
 
     public function update(Request $request, $id)
@@ -122,7 +135,7 @@ class InstituicaoController extends Controller
             'data_de_fundação' => 'required|date|max:255',
             'latitude' => 'required|max:255',
             'longitude' => 'required|max:255',
-            'image'     => 'nullable|file',
+            'image' => 'nullable|file',
             'informação' => 'nullable|max:255',
         ]);
 
@@ -143,13 +156,13 @@ class InstituicaoController extends Controller
 
     private function is_number($var)
     {
-        if ($var == (string) (float) $var) {
-            return (bool) is_numeric($var);
+        if ($var == (string)(float)$var) {
+            return (bool)is_numeric($var);
         }
         if ($var >= 0 && is_string($var) && !is_float($var)) {
-            return (bool) ctype_digit($var);
+            return (bool)ctype_digit($var);
         }
-        return (bool) is_numeric($var);
+        return (bool)is_numeric($var);
     }
 
     private function salvarImagem(Request $request, Instituicao $instituicao)
@@ -158,13 +171,13 @@ class InstituicaoController extends Controller
         if ($request->hasFile('image')) {
             $imagem = $instituicao->images()->where('nome', 'logo')->first();
             if ($imagem != null) {
-                if(Storage::disk()->exists('public/' . $imagem->path)) {
+                if (Storage::disk()->exists('public/' . $imagem->path)) {
                     Storage::delete('public/' . $imagem->path);
                 }
             }
 
             $path = $request->file('image')->store(
-                'images/'.$instituicao->id, 'public'
+                'images/' . $instituicao->id, 'public'
             );
 
             if ($imagem != null) {

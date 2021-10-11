@@ -45,9 +45,14 @@
                         </div>
                         <div class="col" style="margin: 10px; margin-top:15px">
                             <div class="row">
-                                <div class="col-md-11"
+                                <div class="col-md-10"
                                      style="font-size: 25px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-bottom:15px">
                                     {{  $instituicao->nome }}
+                                </div>
+                                <div id="div-delete-instituicao" class="col-md-1" style="margin-right: -3%; margin-top: 4px">
+                                    <a href="{{route('instituicao.delete', ['id' => $instituicao->id])}}" onclick="return confirm('Tem certeza que deseja remover a instituição?')">
+                                        <img src="https://img.icons8.com/material-outlined/24/000000/trash--v1.png"/>
+                                    </a>
                                 </div>
                                 <div id="div-edit-instituicao" class="col-md-1">
                                     <a href="{{route('instituicao.edit', ['id' => $instituicao->id])}}">
@@ -152,7 +157,7 @@
                                             Aprovar
                                         </a>
                                         <a href="{{ route('instituicao.reprovar', ['id' => $instituicao->id]) }}"
-                                           onclick="confirm('Tem certeza?')"
+                                           onclick="return confirm('Tem certeza?')"
                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full mr-8">
                                             Reprovar
                                         </a>
@@ -160,7 +165,7 @@
                                     @elseif($instituicao->autorizado == true)
                                         <div class="bg-green-500 text-center font-bold py-2 px-6 rounded-full ">
                                             <a href="{{ route('instituicao.reprovar', ['id' => $instituicao->id]) }}"
-                                               onclick="confirm('Tem certeza?')" class="text-white">
+                                               onclick="return confirm('Tem certeza?')" class="text-white">
                                                 Autorizado
                                             </a>
                                         </div>
@@ -168,7 +173,7 @@
                                     @elseif($instituicao->autorizado == false)
                                         <div class="bg-red-500 text-center font-bold py-2 px-6 rounded-full ">
                                             <a href="{{ route('instituicao.aceitar', ['id' => $instituicao->id]) }}"
-                                               onclick="confirm('Tem certeza?')" class="text-white">
+                                               onclick="return confirm('Tem certeza?')" class="text-white">
                                                 Reprovado
                                             </a>
                                         </div>
