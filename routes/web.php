@@ -34,5 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('instituicao')->group(fu
     Route::get('pendentes', [InstituicaoController::class, 'pendentes'])->name('instituicao.pendentes');
     Route::get('reprovados', [InstituicaoController::class, 'reprovados'])->name('instituicao.reprovados');
     Route::get('editar/{id}', [InstituicaoController::class, 'edit'])->name('instituicao.edit');
+    Route::get('cadastrar', [InstituicaoController::class, 'cadastrar'])->name('instituicao.cadastro');
+    Route::post('criar', [InstituicaoController::class, 'criar'])->name('instituicao.criar');
     Route::put('atualizar/{id}', [InstituicaoController::class, 'update'])->name('instituicao.update');
 });

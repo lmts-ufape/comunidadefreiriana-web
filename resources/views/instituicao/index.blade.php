@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Instituições') }}
         </h2>
+        <a href="{{route('instituicao.cadastro')}}">Cadastrar Instituição</a>
     </x-slot>
 
     <div class="container" style="margin-top:3rem; padding-bottom:9rem;">
