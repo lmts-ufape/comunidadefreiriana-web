@@ -1,3 +1,6 @@
+<!--Importando Script Jquery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -61,8 +64,16 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
-                                    <label for="pais">Pais</label>
-                                    <input type="text" id="pais" name="pais" class="form-control @error('pais') is-invalid @enderror" required value="">
+                                    <label for="pais">País</label>
+                                    <select type="text" id="pais" name="pais" class="form-control @error('pais') is-invalid @enderror" required>
+                                        <option value="">Selecione um país</option>
+                                       @php
+                                            $paises = \App\Countries::getLista();
+                                       @endphp
+                                       @foreach($paises as $key => $nome)
+                                            <option value="{{$nome}}">{{$nome}}</option>
+                                        @endforeach
+                                    </select>
 
                                     @error('pais')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -71,10 +82,10 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="estado">Estado</label>
-                                    <input type="text" id="estado" name="estado" class="form-control @error('estado') is-invalid @enderror" required value="">
+                                    <label for="cep">Cep</label>
+                                    <input type="text" id="cep" name="cep" class="form-control cep @error('cep') is-invalid @enderror" required value="">
 
-                                    @error('estado')
+                                    @error('cep')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -82,6 +93,17 @@
                                 </div>
                             </div>
                             <div class="form-row">
+                                <div class="col-md-6 form-group">
+                                    <label for="estado">Estado</label>
+                                    <input type="text" id="estado" name="estado" class="form-control @error('estado') is-invalid @enderror" required value="">
+                                    <input type="text" id="teste" name="teste" hidden value="">
+
+                                    @error('estado')
+                                    <div id="validationServer03Feedback" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
                                 <div class="col-md-6 form-group">
                                     <label for="cidade">Cidade</label>
                                     <input type="text" id="cidade" name="cidade" class="form-control @error('cidade') is-invalid @enderror" required value="">
@@ -92,23 +114,13 @@
                                     </div>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="col-md-6 form-group">
                                     <label for="endereco">Endereço</label>
                                     <input type="text" id="endereco" name="endereco" class="form-control @error('endereco') is-invalid @enderror" required value="">
 
                                     @error('endereco')
-                                    <div id="validationServer03Feedback" class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6 form-group">
-                                    <label for="cep">Cep</label>
-                                    <input type="text" id="cep" name="cep" class="form-control @error('cep') is-invalid @enderror" required value="">
-
-                                    @error('cep')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -219,3 +231,60 @@
         </div>
     </div>
 </x-app-layout>
+
+<!--Preenchimento de dados pelo CEP-->
+<script type="text/javascript">
+
+    // Máscara
+    $(document).ready(function() {
+        $('.cep').mask('00000-000');
+    });
+
+    $("#cep").focusout(function(){
+        //Início do Comando AJAX
+        $.ajax({
+            //O campo URL diz o caminho de onde virá os dados
+            //É importante concatenar o valor digitado no CEP
+            url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+            //Aqui você deve preencher o tipo de dados que será lido,
+            //no caso, estamos lendo JSON.
+            dataType: 'json',
+            //SUCESS é referente a função que será executada caso
+            //ele consiga ler a fonte de dados com sucesso.
+            success: function(resposta){
+                $("#endereco").val(resposta.logradouro);
+                $("#bairro").val(resposta.bairro);
+                //$("#complemento").val(resposta.complemento);
+                $("#cidade").val(resposta.localidade);
+               // $("#teste").val(resposta.uf);
+                switch(resposta.uf){
+                    case "AC":  $("#estado").val("Acre");break;
+                    case "AL":  $("#estado").val("Alagoas");break;
+                    case "AM":  $("#estado").val("Amazonas");break;
+                    case "BA":  $("#estado").val("Bahia");break;
+                    case "CE":  $("#estado").val("Ceará");break;
+                    case "DF":  $("#estado").val("Distrito Federal");break;
+                    case "ES":  $("#estado").val("Espirito Santo");break;
+                    case "MA":  $("#estado").val("Maranhão");break;
+                    case "MT":  $("#estado").val("Mato Grosso");break;
+                    case "MS":  $("#estado").val("Mato Grosso do Sul");break;
+                    case "MG":  $("#estado").val("Minas Gerais");break;
+                    case "PA":  $("#estado").val("Pará");break;
+                    case "PB":  $("#estado").val("Paraiba");break;
+                    case "PR":  $("#estado").val("Paraná");break;
+                    case "PE":  $("#estado").val("Pernambuco");break;
+                    case "RJ":  $("#estado").val("Rio de Janeiro");break;
+                    case "RN":  $("#estado").val("Rio Grande do Norte");break;
+                    case "RS":  $("#estado").val("Rio Grande do Sul");break;
+                    case "RO":  $("#estado").val("Rondônia");break;
+                    case "RR":  $("#estado").val("Roraima");break;
+                    case "SC":  $("#estado").val("Santa Catarina");break;
+                    case "SP":  $("#estado").val("São Paulo");break;
+                    case "SE":  $("#estado").val("Sergipe");break;
+                    case "TO":  $("#estado").val("Tocantins");break;
+                }
+            }
+
+        });
+    });
+</script>
