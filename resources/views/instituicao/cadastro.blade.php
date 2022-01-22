@@ -53,7 +53,14 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="categoria">Categoria</label>
-                                    <input type="text" id="categoria" name="categoria" class="form-control @error('categoria') is-invalid @enderror" required value="">
+                                    <select type="text" id="categoria" name="categoria" class="form-control @error('categoria') is-invalid @enderror" required>
+                                        <option value="">Selecione uma categoria</option>
+                                        <option value="Instituto Paulo Freire">Instituto Paulo Freire</option>
+                                        <option value="Cátedra Paulo Freire">Cátedra Paulo Freire</option>
+                                        <option value="Centro Paulo Freire">Centro Paulo Freire</option>
+                                        <option value="Grupo/Coletivo Paulo Freire">Grupo/Coletivo Paulo Freire</option>
+                                        <option value="Homenagem">Homenagem</option>
+                                    </select>
 
                                     @error('categoria')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
