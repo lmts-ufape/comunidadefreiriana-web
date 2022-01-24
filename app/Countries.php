@@ -516,4 +516,9 @@ class Countries
         return array_search($name, self::$countries[$lang]);
     }
 
+    public static function getIsoPt($name, $lang = 'pt')
+    {
+        return array_search($name, self::$countries[$lang]);
+    }
+
 }
