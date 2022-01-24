@@ -45,9 +45,23 @@
                         </div>
                         <div class="col" style="margin: 10px; margin-top:15px">
                             <div class="row">
-                                <div class="col-md-10"
+                                <div class="col-md-9"
                                      style="font-size: 25px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; margin-bottom:15px">
                                     {{  $instituicao->nome }}
+                                </div>
+                                @php
+                                    $checkPais = \App\Countries::getIsoPt($instituicao->pais);
+                                    $checkCategoria = null;
+                                    if($instituicao->categoria=='Instituto Paulo Freire' || $instituicao->categoria=='Cátedra Paulo Freire'
+                                    || $instituicao->categoria=='Centro Paulo Freire' || $instituicao->categoria=='Grupo/Coletivo Paulo Freire'
+                                    || $instituicao->categoria=='Homenagem'  ){
+                                        $checkCategoria = 1;
+                                    }
+                                @endphp
+                                <div id="div-atencao-instituicao" class="col-md-1" style="margin-top: 4px; padding-right: 0;">
+                                    @if($checkPais==null || $checkCategoria==null)
+                                        <img src="{{asset('images/atencao.png')}}" style="width: 70%" title="Atualize as informações da insituição"/>
+                                    @endif
                                 </div>
                                 <div id="div-delete-instituicao" class="col-md-1" style="margin-right: -3%; margin-top: 4px">
                                     <a href="{{route('instituicao.delete', ['id' => $instituicao->id])}}" onclick="return confirm('Tem certeza que deseja remover a instituição?')">

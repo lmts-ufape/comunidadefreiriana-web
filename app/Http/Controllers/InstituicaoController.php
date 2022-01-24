@@ -88,12 +88,11 @@ class InstituicaoController extends Controller
             'informacao' => 'nullable|max:255',
         ]);
 
-
-        if (!$this->is_number($request->latitude)) {
-            return redirect()->back()->withErrors(['latitude' => 'A latitude deve ser um número.'])->withInput($request->all());
+        if (!$this->is_number($request->latitude) || $request->latitude < -90 || $request->latitude > 90) {
+            return redirect()->back()->withErrors(['latitude' => 'A latitude deve estar entre -90 e 90.'])->withInput($request->all());
         }
-        if (!$this->is_number($request->longitude)) {
-            return redirect()->back()->withErrors(['longitude' => 'A longitude deve ser um número.'])->withInput($request->all());
+        if (!$this->is_number($request->longitude) || $request->longitude < -180 || $request->longitude > 180) {
+            return redirect()->back()->withErrors(['longitude' => 'A longitude deve estar entre -180 e 180.'])->withInput($request->all());
         }
 
         $instituicao = new Instituicao();
@@ -139,11 +138,11 @@ class InstituicaoController extends Controller
             'informação' => 'nullable|max:255',
         ]);
 
-        if (!$this->is_number($request->latitude)) {
-            return redirect()->back()->withErrors(['latitude' => 'A latitude deve ser um número.'])->withInput($request->all());
+        if (!$this->is_number($request->latitude) || $request->latitude < -90 || $request->latitude > 90) {
+            return redirect()->back()->withErrors(['latitude' => 'A latitude deve estar entre -90 e 90.'])->withInput($request->all());
         }
-        if (!$this->is_number($request->longitude)) {
-            return redirect()->back()->withErrors(['longitude' => 'A longitude deve ser um número.'])->withInput($request->all());
+        if (!$this->is_number($request->longitude) || $request->longitude < -180 || $request->longitude > 180) {
+            return redirect()->back()->withErrors(['longitude' => 'A longitude deve estar entre -180 e 180.'])->withInput($request->all());
         }
 
         $instituicao = Instituicao::find($id);
