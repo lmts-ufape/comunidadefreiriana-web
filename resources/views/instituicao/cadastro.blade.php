@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="cep">Cep</label>
-                                    <input type="text" id="cep" name="cep" class="form-control cep @error('cep') is-invalid @enderror" required value="">
+                                    <input type="text" id="cep" name="cep" class="form-control @error('cep') is-invalid @enderror" required value="">
 
                                     @error('cep')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -103,7 +103,6 @@
                                 <div class="col-md-6 form-group">
                                     <label for="estado">Estado</label>
                                     <input type="text" id="estado" name="estado" class="form-control @error('estado') is-invalid @enderror" required value="">
-                                    <input type="text" id="teste" name="teste" hidden value="">
 
                                     @error('estado')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -191,7 +190,7 @@
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
                                     <label for="latitude">Latitude</label>
-                                    <input type="text" id="latitude" name="latitude" class="form-control @error('latitude') is-invalid @enderror" required value="">
+                                    <input type="number" step="0.00001" id="latitude" name="latitude" class="form-control @error('latitude') is-invalid @enderror" required value="">
 
                                     @error('latitude')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -201,7 +200,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="longitude">Longitude</label>
-                                    <input type="text" id="longitude" name="longitude" class="form-control @error('longitude') is-invalid @enderror" required value="">
+                                    <input type="number" step="0.00001" id="longitude" name="longitude" class="form-control @error('longitude') is-invalid @enderror" required value="">
 
                                     @error('longitude')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -241,11 +240,6 @@
 
 <!--Preenchimento de dados pelo CEP-->
 <script type="text/javascript">
-
-    // Máscara
-    $(document).ready(function() {
-        $('.cep').mask('00000-000');
-    });
 
     $("#cep").focusout(function(){
         //Início do Comando AJAX
