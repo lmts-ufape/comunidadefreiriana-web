@@ -195,7 +195,7 @@
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
                                     <label for="latitude">Latitude</label>
-                                    <input type="number" min="-90" max="90" step="0.00001" name="latitude" class="form-control @error('latitude') is-invalid @enderror" required @if(old('latitude')) value="{{old('latitude')}}" @else value="{{$instituicao->latitude}}" @endif>
+                                    <input type="number" min="-90" max="90" step="0.000001" name="latitude" class="form-control @error('latitude') is-invalid @enderror" required @if(old('latitude')) value="{{old('latitude')}}" @else value="{{$instituicao->latitude}}" @endif>
 
                                     @error('latitude')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="longitude">Longitude</label>
-                                    <input type="number" min="-180" max="180" step="0.00001" id="longitude" name="longitude" class="form-control @error('longitude') is-invalid @enderror" required @if(old('longitude')) value="{{old('longitude')}}" @else value="{{$instituicao->longitude}}" @endif>
+                                    <input type="number" min="-180" max="180" step="0.000001" id="longitude" name="longitude" class="form-control @error('longitude') is-invalid @enderror" required @if(old('longitude')) value="{{old('longitude')}}" @else value="{{$instituicao->longitude}}" @endif>
 
                                     @error('longitude')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
