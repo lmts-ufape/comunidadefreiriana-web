@@ -1,5 +1,10 @@
 <!--Importando Script Jquery-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<style>
+    strong{
+        color: red;
+    }
+</style>
 
 <x-app-layout>
     <x-slot name="header">
@@ -42,7 +47,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
-                                    <label for="nome">Nome</label>
+                                    <label for="nome">Nome<strong>*</strong></label>
                                     <input type="text" id="nome" name="nome" class="form-control @error('nome') is-invalid @enderror" autofocus required value="{{old('nome')}}">
 
                                     @error('nome')
@@ -52,7 +57,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="categoria">Categoria</label>
+                                    <label for="categoria">Categoria<strong>*</strong></label>
                                     <select type="text" id="categoria" name="categoria" class="form-control @error('categoria') is-invalid @enderror" required>
                                         <option value="">Selecione uma categoria</option>
                                         <option value="Instituto Paulo Freire"
@@ -76,7 +81,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
-                                    <label for="pais">País</label>
+                                    <label for="pais">País<strong>*</strong></label>
                                     <select type="text" id="pais" name="pais" class="form-control @error('pais') is-invalid @enderror" required>
                                         <option value="">Selecione um país</option>
                                        @php
@@ -96,7 +101,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="cep">Cep</label>
-                                    <input type="text" id="cep" name="cep" class="form-control @error('cep') is-invalid @enderror" required value="{{old('cep')}}">
+                                    <input type="text" id="cep" name="cep" class="form-control @error('cep') is-invalid @enderror" value="{{old('cep')}}">
 
                                     @error('cep')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -108,7 +113,7 @@
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
                                     <label for="estado">Estado</label>
-                                    <input type="text" id="estado" name="estado" class="form-control @error('estado') is-invalid @enderror" required value="{{old('estado')}}">
+                                    <input type="text" id="estado" name="estado" class="form-control @error('estado') is-invalid @enderror" value="{{old('estado')}}">
 
                                     @error('estado')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -118,7 +123,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="cidade">Cidade</label>
-                                    <input type="text" id="cidade" name="cidade" class="form-control @error('cidade') is-invalid @enderror" required value="{{old('cidade')}}">
+                                    <input type="text" id="cidade" name="cidade" class="form-control @error('cidade') is-invalid @enderror" value="{{old('cidade')}}">
 
                                     @error('cidade')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -130,7 +135,7 @@
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
                                     <label for="endereco">Endereço</label>
-                                    <input type="text" id="endereco" name="endereco" class="form-control @error('endereco') is-invalid @enderror" required value="{{old('endereco')}}">
+                                    <input type="text" id="endereco" name="endereco" class="form-control @error('endereco') is-invalid @enderror" value="{{old('endereco')}}">
 
                                     @error('endereco')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -140,7 +145,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="telefone">Telefone</label>
-                                    <input type="text" id="telefone" name="telefone" class="form-control @error('telefone') is-invalid @enderror" required value="{{old('telefone')}}">
+                                    <input type="text" id="telefone" name="telefone" class="form-control @error('telefone') is-invalid @enderror" value="{{old('telefone')}}">
 
                                     @error('telefone')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -152,7 +157,7 @@
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" required value="{{old('email')}}">
+                                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
 
                                     @error('email')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -162,7 +167,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="site">Site</label>
-                                    <input type="text" id="site" name="site" class="form-control @error('site') is-invalid @enderror" required value="{{old('site')}}">
+                                    <input type="text" id="site" name="site" class="form-control @error('site') is-invalid @enderror" value="{{old('site')}}">
 
                                     @error('site')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -174,7 +179,7 @@
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
                                     <label for="datafundacao">Data da fundação</label>
-                                    <input type="date" id="datafundacao" name="datafundacao" class="form-control @error('datafundacao') is-invalid @enderror" required value="{{old('datafundacao')}}">
+                                    <input type="date" id="datafundacao" name="datafundacao" class="form-control @error('datafundacao') is-invalid @enderror" value="{{old('datafundacao')}}">
 
                                     @error('datafundacao')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -184,7 +189,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="coordenador">Coordenador</label>
-                                    <input type="text" id="coordenador" name="coordenador" class="form-control @error('coordenador') is-invalid @enderror" required value="{{old('coordenador')}}">
+                                    <input type="text" id="coordenador" name="coordenador" class="form-control @error('coordenador') is-invalid @enderror" value="{{old('coordenador')}}">
 
                                     @error('coordenador')
                                     <div id="validationServer03Feedback" class="invalid-feedback">
@@ -195,7 +200,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
-                                    <label for="latitude">Latitude</label>
+                                    <label for="latitude">Latitude<strong>*</strong></label>
                                     <input type="number" min="-90" max="90" step="0.000001" id="latitude" name="latitude"
                                            class="form-control @error('latitude') is-invalid @enderror" required value="{{old('latitude')}}"
                                             placeholder="Ex: 41.40338">
@@ -207,7 +212,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="longitude">Longitude</label>
+                                    <label for="longitude">Longitude<strong>*</strong></label>
                                     <input type="number" min="-180" max="180" step="0.000001" id="longitude" name="longitude"
                                            class="form-control @error('longitude') is-invalid @enderror" required value="{{old('longitude')}}"
                                            placeholder="Ex: 2.17403">
