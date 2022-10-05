@@ -222,7 +222,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-12 form-group">
-                                    <label for="info">Informação</label>
+                                    <label for="info">Outras Informações</label>
                                     <input type="text" id="info" name="informação" class="form-control @error('informação') is-invalid @enderror" value="{{old('informação', $instituicao->info)}}">
 
                                     @error('informação')

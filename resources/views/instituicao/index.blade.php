@@ -105,14 +105,23 @@
                                         <div class="col-md-6" style="margin-top:-5px; margin-bottom:-5px">
                                             <div class="form-group">
                                                 <div class="divLabel">
-                                                    Cidade/Estado:
+                                                    Cidade:
                                                 </div>
                                                 <div style="font-size:17px">
                                                     @if($instituicao->cidade != null)
-                                                        {{ $instituicao->cidade }} /
+                                                        {{ $instituicao->cidade }}
                                                     @else
-                                                        Não identificado /
+                                                        Não identificado
                                                     @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="margin-top:-5px; margin-bottom:-5px">
+                                            <div class="form-group">
+                                                <div class="divLabel">
+                                                    Estado:
+                                                </div>
+                                                <div style="font-size:17px">
                                                     @if($instituicao->estado != null){{ $instituicao->estado }}
                                                     @else
                                                         Não identificado
@@ -165,7 +174,7 @@
                                         <div class="col-md-6" style="margin-top:-5px; margin-bottom:-5px">
                                             <div class="form-group">
                                                 <div class="divLabel">
-                                                    Coordenador:
+                                                    Coordenador(a):
                                                 </div>
                                                 <div style="font-size:17px">@if($instituicao->coordenador != null)
                                                         {{ $instituicao->coordenador }}
@@ -191,14 +200,23 @@
                                         <div class="col-md-6" style="margin-top:-5px; margin-bottom:-5px; word-break: break-all;" >
                                             <div class="form-group">
                                                 <div class="divLabel">
-                                                    E-mail/Site:
+                                                    E-mail:
                                                 </div>
                                                 <div style="font-size:17px">
                                                     @if($instituicao->email != null)
-                                                        {{ $instituicao->email }} /
+                                                        {{ $instituicao->email }}
                                                     @else
-                                                        Não identificado /
+                                                        Não identificado
                                                     @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="margin-top:-5px; margin-bottom:-5px; word-break: break-all;" >
+                                            <div class="form-group">
+                                                <div class="divLabel">
+                                                    Site:
+                                                </div>
+                                                <div style="font-size:17px">
                                                     @if($instituicao->site != null)
                                                         <a href="{{$instituicao->site}}">{{ $instituicao->site }}</a>
                                                     @else
@@ -210,7 +228,7 @@
                                         <div class="col-md-12" style="margin-top:-5px; margin-bottom:-5px">
                                             <div class="form-group">
                                                 <div class="divLabel">
-                                                    Informação:
+                                                    Outras Informações:
                                                 </div>
                                                 <div style="font-size:17px">
                                                     @if($instituicao->info != null)
