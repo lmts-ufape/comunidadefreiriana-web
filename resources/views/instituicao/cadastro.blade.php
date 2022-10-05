@@ -226,7 +226,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-12 form-group">
-                                    <label for="info">Informação</label>
+                                    <label for="info">Outras Informações</label>
                                     <input type="text" id="info" name="informacao" class="form-control @error('informacao') is-invalid @enderror" value="{{old('informacao')}}">
 
                                     @error('informacao')
