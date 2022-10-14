@@ -25,6 +25,14 @@ class InstituicaoController extends Controller
         return response()->json(['data' => $instituicaos ]);
     }
 
+    public function buscarInstituicao(Request $request)
+    {
+        $instituicaos = Instituicao::where('nome', 'ilike', '%' .  $request->busca . '%')
+        ->orderBy('nome')
+        ->get();
+        return response()->json(['data' => $instituicaos ]);
+    }
+
     public function aprovados()
     {
         $instituicaos =  Instituicao::where('autorizado', true)->get();
