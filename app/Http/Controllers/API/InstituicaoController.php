@@ -27,7 +27,7 @@ class InstituicaoController extends Controller
 
     public function buscarInstituicao(Request $request)
     {
-        $instituicaos = Instituicao::where('nome', 'ilike', '%' .  $request->busca . '%')
+        $instituicaos = Instituicao::whereRaw("unaccent(nome) ilike unaccent('%".$request->busca."%')")
         ->orderBy('nome')
         ->get();
         return response()->json(['data' => $instituicaos ]);
