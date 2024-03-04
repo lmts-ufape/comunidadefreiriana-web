@@ -13,8 +13,7 @@ class InstituicaoController extends Controller
 
     public function index()
     {
-        $instituicaos = Instituicao::all();
-        return view('instituicao.index', compact('instituicaos'));
+        return view('instituicao.index');
     }
 
     public function cadastrar()
