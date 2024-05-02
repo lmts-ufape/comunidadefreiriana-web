@@ -21,8 +21,9 @@ class ShowInstituicoes extends Component
 
     public function mount()
     {
-        $this->categorias = Instituicao::all()->unique('categoria')->map(fn($value) => $value->categoria)->values()->all();
-        $this->paises = Instituicao::all()->unique('pais')->map(fn($value) => $value->pais)->values()->all();
+        $instituicoes = Instituicao::all();
+        $this->categorias = $instituicoes->unique('categoria')->map(fn($value) => $value->categoria)->sort()->values()->all();
+        $this->paises = $instituicoes->unique('pais')->map(fn($value) => $value->pais)->sort()->values()->all();
         $this->status = 'todas';
     }
 
