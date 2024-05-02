@@ -1,3 +1,7 @@
 #div-edit-instituicao:active {
     table-layout: none;
 }
+
+label {
+    font-weight: 700;
+}
