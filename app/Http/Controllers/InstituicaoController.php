@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instituicao;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Notifications\InstituicaoAprovada;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
+use Panoscape\History\History;
 
 class InstituicaoController extends Controller
 {
@@ -19,6 +21,27 @@ class InstituicaoController extends Controller
     public function cadastrar()
     {
         return view('instituicao.cadastro');
+    }
+
+    public function historico(Instituicao $instituicao)
+    {
+        $histories = $instituicao->histories->sortByDesc('performed_at')->map(function($history) {
+            $history->user = User::find($history->user_id);
+            return $history;
+        });
+        return view('instituicao.historico', ['instituicao' => $instituicao, 'histories' => $histories]);
+    }
+
+    public function restaurar(Instituicao $instituicao, History $history)
+    {
+        if ($history->model_type != 'App\Models\Instituicao' || $history->model_id != $instituicao->id) {
+            return redirect()->back()->with('danger', 'Não é possível restaurar um histórico de outra instituição');
+        }
+        foreach ($history->meta as $item) {
+            $instituicao->{$item['key']} = $item['old'];
+        }
+        $instituicao->save();
+        return redirect()->back()->with('success', 'Alterações foram desfeitas');
     }
 
 

@@ -16,7 +16,7 @@
     <div class="container">
         <div class="form-row justify-content-center">
             <div class="col-md-10">
-                <div class="card" style="width: 100%; margin-top: 50px; margin-bottom: 50px;">
+                <div class="card mt-14">
                     <div class="card-header">
                         Instituições > Cadastrar instituição
                     </div>

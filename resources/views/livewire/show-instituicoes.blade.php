@@ -67,22 +67,22 @@
                                         $checkCategoria = 1;
                                     }
                                 @endphp
-                                <div id="div-atencao-instituicao" class="col-md-1" style="margin-top: 4px; padding-right: 0;">
-                                    @if($checkPais==null || $checkCategoria==null)
-                                        <img src="{{asset('images/atencao.png')}}" style="width: 70%" title="Atualize as informações da insituição"/>
-                                    @endif
-                                </div>
-                                <div id="div-delete-instituicao" class="col-md-1" style="margin-right: -3%; margin-top: 4px">
-                                    <a href="{{route('instituicao.delete', ['id' => $instituicao->id])}}" onclick="return confirm('Tem certeza que deseja remover a instituição?')">
-                                        <img src="https://img.icons8.com/material-outlined/24/000000/trash--v1.png"/>
+                                <div class="col-md-3 grid grid-flow-col">
+                                    <div id="div-atencao-instituicao">
+                                        @if($checkPais==null || $checkCategoria==null)
+                                            <img width="25px" src="{{asset('images/atencao.png')}}" title="Atualize as informações da insituição"/>
+                                        @endif
+                                    </div>
+                                    <a title="Deletar instituição" href="{{route('instituicao.delete', ['id' => $instituicao->id])}}" onclick="return confirm('Tem certeza que deseja remover a instituição?')">
+                                        <img width="25px" src="https://img.icons8.com/material-outlined/24/000000/trash--v1.png"/>
                                     </a>
-                                </div>
-                                <div id="div-edit-instituicao" class="col-md-1">
-                                    <a href="{{route('instituicao.edit', ['id' => $instituicao->id])}}">
-                                        <img src="{{asset('images/edit-regular.svg')}}" alt="Editar Instituição"
-                                             width="25px" height="auto" style="float: right; margin-top: 5px;"
-                                             onmouseover="this.src='{{asset('images/edit-regular-cinza.svg')}}'"
-                                             onmouseout="this.src='{{asset('images/edit-regular.svg')}}'">
+                                    <a title="Editar instituição" href="{{route('instituicao.edit', ['id' => $instituicao->id])}}">
+                                        <img width="25px" src="{{asset('images/edit-regular.svg')}}" alt="Editar Instituição"
+                                                onmouseover="this.src='{{asset('images/edit-regular-cinza.svg')}}'"
+                                                onmouseout="this.src='{{asset('images/edit-regular.svg')}}'">
+                                    </a>
+                                    <a title="Histórico de alterações da instituição" href="{{ route('instituicao.historico', ['instituicao' => $instituicao->id]) }}">
+                                        <img width="25px" src="{{ asset('images/icons8-history-50.png') }}" alt="Histórico de alterações da instituição">
                                     </a>
                                 </div>
                                 <div class="col-md-12"></div>

@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Panoscape\History\HasHistories;
 
 class Instituicao extends Model
 {
-    use HasFactory, SoftDeletes, Notifiable;
+    use HasFactory, SoftDeletes, Notifiable, HasHistories;
 
     protected $fillable = ['nome', 'categoria', 'pais', 'estado', 'cidade', 'endereco', 'cep', 'telefone', 'email', 'site', 'coordenador', 'latitude', 'longitude', 'info', 'datafundacao'];
 
@@ -19,7 +20,12 @@ class Instituicao extends Model
         return $this->hasMany(Image::class, 'instituicaos_id');
     }
 
-    public function setAtributes($request) 
+    public function getModelLabel()
+    {
+        return $this->nome;
+    }
+
+    public function setAtributes($request)
     {
         $this->nome = $request->nome;
         $this->categoria = $request->categoria;
